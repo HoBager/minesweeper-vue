@@ -10,11 +10,11 @@
 
 ## About the Project
 
-<p></p>
+<p>Классическая версия игры "Сапер".</p>
+<p>Доступно 3 страницы. Страница с игрой. Страница настроек, где пользоватаель может выставить сложность. И страница с рекордами.</p>
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Usage
+- Visit [Minesweeper App](https://minesweeper-vue.vercel.app/)
 
 ## Project Setup
 
