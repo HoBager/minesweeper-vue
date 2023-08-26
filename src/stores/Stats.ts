@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 export interface Record {
   playerName: string
   time: number
 }
+
+const STATS_KEY = 'stats'
 
 const MOCK_STATS = [
   { playerName: 'RandomPlayer1', time: 999 },
@@ -19,12 +21,29 @@ const MOCK_STATS = [
 ]
 
 export const useStatsStore = defineStore('stats', () => {
-  const stats = ref<Record[]>(MOCK_STATS)
+  const stats = ref<Record[]>([])
   const top = computed(() => {
     return [...stats.value].sort((a, b) => a.time - b.time).slice(0, 10)
   })
+
+  const statsOnStorage = localStorage.getItem(STATS_KEY)
+
+  if (statsOnStorage) {
+    stats.value = JSON.parse(statsOnStorage)._value
+  } else {
+    stats.value = MOCK_STATS
+  }
+
   function addNewRecord(record: Record) {
     stats.value.push(record)
   }
+
+  watch(
+    () => stats,
+    (state) => {
+      localStorage.setItem(STATS_KEY, JSON.stringify(state))
+    },
+    { deep: true }
+  )
   return { stats, top, addNewRecord }
 })
